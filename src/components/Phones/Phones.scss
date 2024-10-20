@@ -1,5 +1,19 @@
-.container {
-    max-width: 100%;
-    height: 800px;
-    border: 1px solid black;
+.main-phone {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    article {
+        width: 180px;
+        height: auto;
+    }
+
+    section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
