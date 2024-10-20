@@ -4,9 +4,9 @@ import "./Phones.scss"
 const Phones = () => {
   return (
     <div className='container'>
-        <h1>
-            Hello world
-        </h1>
+        <div className='component'>
+            <p> </p>
+        </div>
     </div>
   )
 }
