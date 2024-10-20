@@ -29,7 +29,7 @@ const Hero = () => {
           </h1>
         </div>
         <div className="image-box">
-            <img className="hero-img" src="/images/heros.png" alt="Alt"/>
+            <img className="hero-img" src="/images/logo.png" alt="Alt"/>
         </div>
       </div>
     </section>
