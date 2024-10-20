@@ -5,7 +5,7 @@ const Phones = () => {
   return (
     <div className='container'>
         <div className='component'>
-            <p> </p>
+            <p></p>
         </div>
     </div>
   )
