@@ -1,0 +1,80 @@
+:root {
+  /* --button-color: #F6E71D; */
+  --index: calc(1vw + 1vh);
+  --button-color: gold;
+  --bg-color: white;
+  --text-color: black;
+  --transform-btn: translateY(-1px);
+  --gallery-gap: calc(var(--index) * 7.5);
+  --box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] {
+  --text-color: white;
+  --bg-color: black;
+  /* --text-color: #ffba08; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  scrollbar-width: none;
+  user-select: none;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  /* height: 100vh; Makes the page scrollable */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.scroll-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 calc(var(--index) * 2);
+  }
+}
