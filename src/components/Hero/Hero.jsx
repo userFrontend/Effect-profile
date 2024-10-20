@@ -34,6 +34,7 @@ const Hero = () => {
       </div>
     </section>
     
+    
   );
 };
 
