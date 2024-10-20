@@ -1,58 +1,52 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
 .scroll-section {
-    height: 100vh; // Adjust height as needed
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .hero {
-    display: flex;
-    align-items: center; // Align items vertically in the center
-    position: relative;
-    transition: transform 0.2s ease; // Smooth transition for tilt effect
-  }
-  
-  .hero-img {
-    width: 40%; // Adjust width as needed
-    max-width: 600px; // Set a max width
-    transition: transform 0.3s ease; // Smooth transition for hover
-  }
-  
-  .text-container {
-    width: 60%; // Adjust width as needed
-    padding-left: 20px; // Add some padding between the image and text
-  }
-  
-  .main-title {
-    text-align: left; // Align text to the left
-    color: #fff; // Change text color as needed
-    position: relative;
-    z-index: 1; // Ensure title is above the image
-  }
-  
-  #text1, #text2 {
-    display: inline-block;
-    font-weight: bold;
-    color: #f39c12; // Change color as needed
-    transition: filter 0.3s ease, opacity 0.3s ease; // Smooth transition for text morphing
-  }
-  
-  #text1,
-#text2 {
-  position: absolute;
-  width: 100%;
-  display: inline-block;
-
-  font-family: "Raleway", sans-serif;
-  font-size: 80pt;
-
-  text-align: center;
-  user-select: none;
-  white-space: nowrap; // Prevent text wrapping
+  height: 100vh; // Adjust height as needed
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  perspective: 1000px; // Set perspective for 3D effect
 }
 
-svg {
-  display: none; // Hide the SVG filter
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease; // Smooth transition for the hero container
+}
+
+.hero-img {
+  width: 100%; // Adjust based on your layout
+  max-width: 600px; // Set a max width
+  transition: transform 0.3s ease; // Smooth transition for hover
+  will-change: transform; // Optimize for performance
+}
+
+.hero-img:hover {
+  transform: scale(1.05); // Slightly scale up the image on hover
+}
+
+.main-title {
+  text-align: center;
+  color: #fff; // Change text color as needed
+  position: relative;
+  z-index: 1; // Ensure title is above the image
+}
+
+.effect-text {
+  display: inline-block;
+  font-weight: bold;
+  color: #f39c12; // Change color as needed
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
