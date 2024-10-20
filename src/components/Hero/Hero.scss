@@ -39,20 +39,15 @@
     transform: perspective(500px) scale(1.1) rotateX(-5deg) rotateY(5deg);
   }
 }
-  
-
-.main-title {
-  text-align: center;
-  color: #fff; // Change text color as needed
-  position: relative;
-  z-index: 1; // Ensure title is above the image
-}
 
 .effect-text {
   display: inline-block;
   font-weight: bold;
   color: #f39c12; // Change color as needed
   animation: fadeIn 0.5s ease forwards;
+  b{
+    color: var(--text-color);
+  }
 }
 
 @keyframes fadeIn {
@@ -67,15 +62,6 @@
 }
 
 
-.text-container {
-    position: relative;
-    margin: auto;
-    width: 100vw;
-    height: auto;
-    top: 0;
-    bottom: 0;
-    text-align: center;
-  }
   
   .main-title {
     font-family: "Raleway", sans-serif;
@@ -84,18 +70,18 @@
   }
   
   .effect-text {
-    position: relative;
+    // position: relative;
   }
   
   .text1,
   .text2 {
-    position: absolute;
+    // position: absolute;
     width: 100%;
     font-size: inherit;
     font-weight: 900;
     font-family: inherit;
-    top: 0;
-    left: 0;
+    // top: 0;
+    // left: 0;
     text-align: center;
     transition: filter 1s ease, opacity 1s ease;
   }
