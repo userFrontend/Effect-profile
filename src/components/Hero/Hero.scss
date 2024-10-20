@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
 .scroll-section {
   height: 100vh; // Adjust height as needed
   display: flex;
@@ -8,23 +9,37 @@
 }
 
 .hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease; // Smooth transition for the hero container
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s ease; // Smooth transition for the hero container
 }
 
-.hero-img {
-  width: 100%; // Adjust based on your layout
-  max-width: 600px; // Set a max width
-  transition: transform 0.3s ease; // Smooth transition for hover
-  will-change: transform; // Optimize for performance
+#tilt {
+    display: block;
+    width: 450px;
+    margin: 0 auto;
+    transition: box-shadow 0.1s, transform 0.1s;
+    animation: tiltAnimation 5s ease-in-out infinite alternate;
 }
 
-.hero-img:hover {
-  transform: scale(1.05); // Slightly scale up the image on hover
+#tilt:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
+
+/* Add the default tilt animation */
+@keyframes tiltAnimation {
+  0% {
+    transform: perspective(500px) scale(1.1) rotateX(5deg) rotateY(-5deg);
+  }
+  100% {
+    transform: perspective(500px) scale(1.1) rotateX(-5deg) rotateY(5deg);
+  }
+}
+  
 
 .main-title {
   text-align: center;
@@ -50,3 +65,38 @@
     transform: translateY(0);
   }
 }
+
+
+.text-container {
+    position: relative;
+    margin: auto;
+    width: 100vw;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+  }
+  
+  .main-title {
+    font-family: "Raleway", sans-serif;
+    font-size: 80pt;
+    color: #fff;
+  }
+  
+  .effect-text {
+    position: relative;
+  }
+  
+  .text1,
+  .text2 {
+    position: absolute;
+    width: 100%;
+    font-size: inherit;
+    font-weight: 900;
+    font-family: inherit;
+    top: 0;
+    left: 0;
+    text-align: center;
+    transition: filter 1s ease, opacity 1s ease;
+  }
+  

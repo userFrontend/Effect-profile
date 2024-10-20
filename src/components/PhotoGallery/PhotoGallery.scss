@@ -1,8 +1,13 @@
 .photo-gallery {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; // Single column by default
     gap: 20px;
-    padding: 20px;
+    padding: 40px 20px; // Increase padding for better spacing
+    width: 80%; // Make the gallery larger on wider screens
+    max-width: 1200px; // Limit maximum width for better readability on larger screens
+    margin: 0 auto;
+    position: relative; // To avoid overlap with other sections
+    z-index: 1; // Ensure it stays on top of the background
   }
   
   .gallery-item {
@@ -10,11 +15,11 @@
     align-items: center;
     opacity: 0;
     transform: translateX(100%); /* Default slide-in from the right */
-    transition: opacity 2s ease-out, transform 2.5s ease-out;
+    transition: opacity .6s ease-out, transform 1s ease-out;
     background-color: #f7f7f7;  
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
   
@@ -28,10 +33,10 @@
   }
   
   .gallery-item img {
-    width: 150px;
-    height: 100px;
+    width: 300px;
     object-fit: cover;
     margin-right: 20px;
+    border-radius: 10px; // Add a bit of rounding to the image
   }
   
   .gallery__right img {
@@ -41,7 +46,7 @@
   
   .gallery-item p {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem; // Adjust text size for better readability
     color: #333;
   }
   
@@ -49,5 +54,43 @@
   .animate {
     opacity: 1;
     transform: translateX(0); /* Slide in both left and right */
+  }
+  
+  /* Add media queries for responsiveness */
+  @media (min-width: 768px) {
+    .photo-gallery {
+      grid-template-columns: repeat(2, 1fr); // Two columns for medium and larger screens
+    }
+  
+    .gallery-item {
+      padding: 30px; // Increase padding for larger screens
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .photo-gallery {
+      width: 100%; // Take full width on large screens
+      padding: 60px 40px; // More padding for larger screens
+    }
+  
+    .gallery-item {
+      padding: 40px; // Larger padding for more space on large screens
+    }
+  
+    .gallery-item img {
+      width: 400px; // Larger images for bigger screens
+    }
+  
+    .gallery-item p {
+      font-size: 1.6rem; // Larger text for readability on big screens
+    }
+  }
+
+  section {
+    padding: 100px 0; // Add top and bottom padding to separate sections
+  }
+  
+  section + section {
+    margin-top: 50px; // Optional: Add margin between consecutive sections
   }
   
