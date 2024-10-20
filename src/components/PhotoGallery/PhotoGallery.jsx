@@ -27,13 +27,14 @@ const PhotoGallery = () => {
   }, []);
 
   const images = [
-    { src: '/images/ART 1.png', text: 'Description 1' },
-    { src: '/images/ART 2.png', text: 'Description 2' },
-    { src: '/images/ART 3.png', text: 'Description 3' },
-    { src: '/images/ART 4.png', text: 'Description 4' },
-    { src: '/images/ART 5.png', text: 'Description 5' },
-    { src: '/images/ART 6.png', text: 'Description 6' },
-    { src: '/images/ART 7.png', text: 'Description 7' },
+    { src: '/images/ART 1.png', text: `"EFFECT | Katta mehnat bozori" kanaliga xush kelibsiz! Ushbu kanal turli sohalar bo'yicha ish o'rinlarini yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 2.png', text: `"EFFECT | Zamonaviy vakansiyalar" kanaliga xush kelibsiz! Ushbu kanal zamonaviy kasblar bo'yicha vakansiyalarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 3.png', text: `"EFFECT | Ustalar bozori" kanaliga xush kelibsiz! Ushbu kanal ustachilik yo'nalishi bo'yicha turli hil ishlarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 4.png', text: `"EFFECT | Ofis vakansiyalari" kanaliga xush kelibsiz! Ushbu kanal ofislarda uchraydigan kasblar bo'yicha vakansiyalarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 5.png', text: `"EFFECT | Mardikorlar bozori" kanaliga xush kelibsiz! Ushbu kanal mardikorlik yo'nalishi bo'yicha turli hil ish o'rinlarini yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 6.png', text: `"EFFECT | Kasting" kanaliga xush kelibsiz! Ushbu kanal san'at sohasi bo'yicha loyihalarni yoki mutaxassislarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { src: '/images/ART 7.png', text: `"EFFECT | San'at sohalari ishlari" kanaliga xush kelibsiz! Ushbu kanal san'at sohasi bo'yicha ishlarni yoki mutaxassislarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
+    { text: `"EFFECT" - bu internet-rekrutment va har tomonlama professional aloqalarni o'rnatish uchun zamonaviy onlayn xizmatlarni taqdim etishga ixtisoslashgan kompaniya.` },
   ];
   // const images = [
   //   { src: 'https://picsum.photos/600/400?random=1', text: 'Description 1' },
@@ -52,7 +53,7 @@ const PhotoGallery = () => {
     <div ref={galleryRef} className="photo-gallery">
       {images.map((item, index) => (
         <div key={index} className={`gallery-item ${index % 2 !== 0 ? 'gallery__left' : 'gallery__right'}`}>
-          <img src={item.src} alt={`Gallery item ${index + 1}`} />
+          {item.src && <img src={item.src} alt={`Gallery item ${index + 1}`} />}
           <p>{item.text}</p>
         </div>
       ))}
