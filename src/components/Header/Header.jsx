@@ -14,15 +14,9 @@ const Header = () => {
         <div className="container">
             <nav className="navbar">
                 <div className="logo">
-                    <div className="image">
                         <NavLink to='/' className="logo">
-                            {theme === 'dark' ? <>
-                                <img src="/images/haircut.png" alt="" />
-                            </> : <>
-                                <img src="/images/haircuts.png" alt="" />
-                            </>}
+                                <img src="/images/logo.png" alt="logo_site" />
                         </NavLink>
-                    </div>  
                     <h2>EFFECT</h2>
                 </div>
                 <ul className="list">
