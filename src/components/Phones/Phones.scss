@@ -13,7 +13,25 @@
 
     section {
         display: flex;
-        justify-content: space-around;
         align-items: center;
+
+        .phone1 {
+            z-index: 1;
+            position: relative;
+            left: 270px;
+        }
+
+        .phone2 {
+            z-index: 2;
+            position: relative;
+            top: 5px;
+        }
+
+        .phone3 {
+            z-index: 3;
+            position: relative;
+            right: 130px;
+            top: 10px;
+        }
     }
 }

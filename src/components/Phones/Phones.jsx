@@ -11,8 +11,9 @@ const Phones = () => {
         </article>
 
         <section>
-            <img src="/images/phone-kasting.png" alt="" />
-            <img src="/images/phone-mehnat.png" alt="" />
+            <img className='phone1' src="/images/phone-kasting.png" alt="" width={600} height={880} />
+            <img className='phone2' src="/images/phone-mehnat.png" alt="" height={850} />
+            <img className='phone3' src="/images/phone-zamonaviy.png" alt="" />
         </section>
     </div>
   )
