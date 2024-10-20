@@ -1,47 +1,51 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Hero.scss'; // Make sure to import your styles
 
+const phrases = [
+    "If",
+    "You",
+    "Like",
+    "It",
+    "Please",
+    "Give"  ,
+  ];
+
 const Hero = () => {
-    const phrases = [
-        "If",
-        "You",
-        "Like",
-        "It",
-        "Please",
-        "Give",
-        "a Love",
-        ":)",
-        "by @DotOnion",
-      ];
-    
-      const [currentPhrase, setCurrentPhrase] = useState(0);
-      const [morph, setMorph] = useState(0);
-      const [cooldown, setCooldown] = useState(true);
-    
-      const morphTime = 150; // Time in milliseconds
-      const cooldownTime = 100; // Time in milliseconds
-    
-      useEffect(() => {
-        const interval = setInterval(() => {
-          if (cooldown) {
-            setCurrentPhrase((prev) => (prev + 1) % phrases.length);
-            setCooldown(false);
-          } else {
-            setMorph((prevMorph) => (prevMorph + 1) % (morphTime + cooldownTime));
-            if (morph >= morphTime) {
-              setMorph(0);
+    const [currentPhrase, setCurrentPhrase] = useState(0);
+    const [morph, setMorph] = useState(0);
+    const [cooldown, setCooldown] = useState(true);
+  
+    const morphTime = 50; // Time for morphing
+    const cooldownTime = 400; // Time the text stays visible after morphing
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (cooldown) {
+          // When in cooldown, switch to the next phrase
+          setCurrentPhrase((prev) => (prev + 1) % phrases.length);
+          setMorph(0); // Reset morph state
+          setCooldown(false); // End cooldown
+        } else {
+          // Progress morph
+          setMorph((prevMorph) => {
+            const newMorph = prevMorph + 1;
+            if (newMorph >= morphTime) {
+              // When morphing time is completed, start cooldown
               setCooldown(true);
+              return morphTime; // Ensure it stays at morphTime to avoid sudden jumps
             }
-          }
-        }, 50); // Animating every 50ms to achieve smooth effect
-    
-        return () => clearInterval(interval); // Cleanup interval on unmount
-      }, [morph, cooldown, phrases.length]);
-    
-      const fraction = morph / morphTime;
-    
-      const blurValue = (fraction) => Math.min(8 / fraction - 8, 100);
-      const opacityValue = (fraction) => Math.pow(fraction, 0.4) * 100;
+            return newMorph;
+          });
+        }
+      }, 50); // Run every 50ms for smooth transitions
+  
+      return () => clearInterval(interval); // Cleanup on unmount
+    }, [morph, cooldown, phrases.length]);
+  
+    const fraction = morph / morphTime;
+    const blurValue = (fraction) => Math.min(8 / fraction - 8, 100);
+    const opacityValue = (fraction) => Math.pow(fraction, 0.4) * 100;
+      
     
 
   const tiltRef = useRef(null);
@@ -97,15 +101,15 @@ const Hero = () => {
 
   return (
     <section className="scroll-section">
-      <div className="container">
-      <div className="hero">
-      <div className="text-container">
-      <h1 className="main-title">
-        Welcome to <br />
+        <div className="container">
+        <div className="hero">
+        <div className="text-container">
+      <h1 className="main-title"> 
         <span className="effect-text">
+            <b>Welcome to</b><br />
           <span
-            className="text1"
             style={{
+              position: 'absolute',
               filter: `blur(${blurValue(1 - fraction)}px)`,
               opacity: `${opacityValue(1 - fraction)}%`,
             }}
@@ -113,8 +117,8 @@ const Hero = () => {
             {phrases[currentPhrase]}
           </span>
           <span
-            className="text2"
             style={{
+              position: 'absolute',
               filter: `blur(${blurValue(fraction)}px)`,
               opacity: `${opacityValue(fraction)}%`,
             }}
@@ -123,16 +127,6 @@ const Hero = () => {
           </span>
         </span>
       </h1>
-      <svg id="filters">
-    <defs>
-        <filter id="threshold">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 255 -140" />
-        </filter>
-    </defs>
-</svg>
     </div>
         <div className="image-box">
             <img id='tilt' className="hero-img" src="/images/logo.png" alt="Alt" ref={tiltRef}/>
