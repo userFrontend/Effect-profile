@@ -14,9 +14,9 @@ const Header = () => {
         <div className="container">
             <nav className="navbar">
                 <div className="logo">
-                        <NavLink to='/' className="logo">
+                        <Link to='/' className="logo">
                                 <img src="/images/logo.png" alt="logo_site" />
-                        </NavLink>
+                        </Link>
                     <h2>EFFECT</h2>
                 </div>
                 <ul className="list">

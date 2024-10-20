@@ -12,8 +12,10 @@ const Home = () => {
     <main>
     <div>
       <Hero />
-      <section className="scroll-section">
-        <PhotoGallery />
+      <section>
+        <div className="container">
+          <PhotoGallery />
+        </div>
       </section>
     </div>
     <Phones />
