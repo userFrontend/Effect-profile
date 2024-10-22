@@ -2,12 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import './Hero.scss'; // Make sure to import your styles
 
 const phrases = [
-    "If",
-    "You",
-    "Like",
-    "It",
-    "Please",
-    "Give"  ,
+    "Ish",
+    "Rezyumi",
+    "Sherik",
+    "Ustoz",
+    "Shogirt"  ,
   ];
 
 const Hero = () => {
@@ -15,7 +14,7 @@ const Hero = () => {
     const [morph, setMorph] = useState(0);
     const [cooldown, setCooldown] = useState(true);
   
-    const morphTime = 50; // Time for morphing
+    const morphTime = 40; // Time for morphing
     const cooldownTime = 400; // Time the text stays visible after morphing
   
     useEffect(() => {
@@ -106,7 +105,7 @@ const Hero = () => {
         <div className="text-container">
       <h1 className="main-title"> 
         <span className="effect-text">
-            <b>Welcome to</b><br />
+            <b>Assalomu alekum. <br /> Siz bizning saytimizda topishingiz mumkin:</b><br />
           <span
             style={{
               position: 'absolute',

@@ -21,12 +21,6 @@ const Header = () => {
                 </div>
                 <ul className="list">
                     <li to='/' className="items">
-                        <button>Download</button>
-                    </li>
-                    <li to='/auth' className="items">
-                        <button className="sign">Sign in</button>
-                    </li>
-                    <li to='/' className="items">
                     <input checked={theme === 'dark'} id="checkbox" type="checkbox" onChange={toggleTheme}/>
                     <label className="switch" htmlFor="checkbox">
                       {theme === 'dark' ? <LuSun /> : <BsMoonStars />}

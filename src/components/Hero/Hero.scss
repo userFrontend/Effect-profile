@@ -65,24 +65,25 @@
   
   .main-title {
     font-family: "Raleway", sans-serif;
-    font-size: 80pt;
+    font-size: 50pt;
     color: #fff;
   }
   
-  .effect-text {
-    // position: relative;
-  }
   
-  .text1,
-  .text2 {
-    // position: absolute;
-    width: 100%;
-    font-size: inherit;
-    font-weight: 900;
-    font-family: inherit;
-    // top: 0;
-    // left: 0;
-    text-align: center;
-    transition: filter 1s ease, opacity 1s ease;
+  @media (max-width: 1024px){
+    .hero{
+      flex-direction: column-reverse;
+      text-align: center;
+      .effect-text{
+        font-size: clamp(20px, 4vw, 100px);
+      }
+      span{
+        margin-left: -100px;
+      }
+      #tilt{  
+        width: 100%;
+        max-width: 550px;
+        padding: 0 100px;
+      }
+    }
   }
-  

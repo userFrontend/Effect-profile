@@ -1,30 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PhotoGallery.scss';
 
 const PhotoGallery = () => {
-  const galleryRef = useRef(null);
+  const [scrollPos, setScrollPos] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-          } else {
-            entry.target.classList.remove('animate');
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const maxScroll = document.documentElement.scrollHeight - windowHeight;
 
-    const items = galleryRef.current.querySelectorAll('.gallery-item');
-    items.forEach((item) => observer.observe(item));
-
-    return () => {
-      items.forEach((item) => observer.unobserve(item));
+      // Scrollni nisbatda hisoblash (0 - boshida, 1 - oxirida)
+      const scrollRatio = Math.min(scrollTop / maxScroll, 1);
+      setScrollPos(scrollRatio);
     };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const items = document.querySelectorAll('.gallery-item');
+
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        item.classList.add('in-view');
+      } else {
+        item.classList.remove('in-view');
+      }
+    });
+  }, [scrollPos]);
 
   const images = [
     { src: '/images/ART 1.png', text: `"EFFECT | Katta mehnat bozori" kanaliga xush kelibsiz! Ushbu kanal turli sohalar bo'yicha ish o'rinlarini yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
@@ -36,23 +42,11 @@ const PhotoGallery = () => {
     { src: '/images/ART 7.png', text: `"EFFECT | San'at sohalari ishlari" kanaliga xush kelibsiz! Ushbu kanal san'at sohasi bo'yicha ishlarni yoki mutaxassislarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.` },
     { text: `"EFFECT" - bu internet-rekrutment va har tomonlama professional aloqalarni o'rnatish uchun zamonaviy onlayn xizmatlarni taqdim etishga ixtisoslashgan kompaniya.` },
   ];
-  // const images = [
-  //   { src: 'https://picsum.photos/600/400?random=1', text: 'Description 1' },
-  //   { src: 'https://picsum.photos/600/400?random=2', text: 'Description 2' },
-  //   { src: 'https://picsum.photos/600/400?random=3', text: 'Description 3' },
-  //   { src: 'https://picsum.photos/600/400?random=4', text: 'Description 4' },
-  //   { src: 'https://picsum.photos/600/400?random=5', text: 'Description 5' },
-  //   { src: 'https://picsum.photos/600/400?random=6', text: 'Description 6' },
-  //   { src: 'https://picsum.photos/600/400?random=7', text: 'Description 7' },
-  //   { src: 'https://picsum.photos/600/400?random=8', text: 'Description 8' },
-  //   { src: 'https://picsum.photos/600/400?random=9', text: 'Description 9' },
-  //   { src: 'https://picsum.photos/600/400?random=10', text: 'Description 10' },
-  // ];
 
   return (
-    <div ref={galleryRef} className="photo-gallery">
+    <div className="photo-gallery">
       {images.map((item, index) => (
-        <div key={index} className={`gallery-item ${index % 2 !== 0 ? 'gallery__left' : 'gallery__right'}`}>
+        <div key={index} className={`gallery-item ${index % 2 === 0 ? 'gallery__right' : 'gallery__left'}`}>
           {item.src && <img src={item.src} alt={`Gallery item ${index + 1}`} />}
           <p>{item.text}</p>
         </div>

@@ -1,88 +1,68 @@
 .photo-gallery {
-    display: grid;
-    grid-template-columns: 1fr; // Single column by default
-    gap: 20px;
-    padding: 40px 20px; // Increase padding for better spacing
-    width: 80%; // Make the gallery larger on wider screens
-    max-width: 1200px; // Limit maximum width for better readability on larger screens
-    margin: 0 auto;
-    position: relative; // To avoid overlap with other sections
-    z-index: 1; // Ensure it stays on top of the background
-  }
-  
-  .gallery-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.gallery-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0;
+  width: 80%;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.gallery__left {
+  flex-direction: row-reverse; /* Text chap tomonda, rasm o'ngda */
+  transform: translateX(-150px); /* Chap tomondan kirib keladi */
+}
+
+.gallery__right {
+  flex-direction: row; /* Rasm chapda, text o'ngda */
+  transform: translateX(150px); /* O'ng tomondan kirib keladi */
+}
+
+.gallery-item img {
+  max-width: 40%;
+  height: auto;
+}
+
+.gallery-item p {
+  max-width: 55%;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.gallery-item.in-view {
+  opacity: 1;
+  transform: translateX(0) translateY(0); /* Skroll bo'lganda o'rtaga kiradi */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Scrollga mos animatsiya */
+@keyframes moveIn {
+  0% {
+    transform: translateX(100%);
     opacity: 0;
-    transform: translateX(100%); /* Default slide-in from the right */
-    transition: opacity .6s ease-out, transform 1s ease-out;
-    background-color: #f7f7f7;  
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
   }
-  
-  .gallery__left {
-    flex-direction: row;
-    transform: translateX(-100%); /* Left-aligned items slide in from the left */
-  }
-  
-  .gallery__right {
-    flex-direction: row-reverse;
-  }
-  
-  .gallery-item img {
-    width: 300px;
-    object-fit: cover;
-    margin-right: 20px;
-    border-radius: 10px; // Add a bit of rounding to the image
-  }
-  
-  .gallery__right img {
-    margin-right: 0;
-    margin-left: 20px;
-  }
-  
-  .gallery-item p {
-    width: 500px;
-    margin: 0;
-    font-size: 1.4rem; // Adjust text size for better readability
-    color: #333;
-  }
-  
-  /* Triggered animation */
-  .animate {
+  100% {
+    transform: translateX(0);
     opacity: 1;
-    transform: translateX(0); /* Slide in both left and right */
   }
-  
-  /* Add media queries for responsiveness */
-  @media (min-width: 768px) {
-    .photo-gallery {
-      grid-template-columns: repeat(2, 1fr); // Two columns for medium and larger screens
-    }
-  
-    .gallery-item {
-      padding: 30px; // Increase padding for larger screens
-    }
+}
+
+@keyframes moveInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
   }
-  
-  @media (min-width: 1024px) {
-    .photo-gallery {
-      width: 100%; // Take full width on large screens
-      padding: 60px 40px; // More padding for larger screens
-    }
-  
-    .gallery-item {
-      padding: 40px; // Larger padding for more space on large screens
-    }
-  
-    .gallery-item img {
-      width: 400px; // Larger images for bigger screens
-    }
-  
-    .gallery-item p {
-      font-size: 1.6rem; // Larger text for readability on big screens
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
+}
