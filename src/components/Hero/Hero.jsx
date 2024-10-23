@@ -102,34 +102,34 @@ const Hero = () => {
     <section className="scroll-section">
         <div className="container">
         <div className="hero">
-        <div className="text-container">
-      <h1 className="main-title"> 
-        <span className="effect-text">
-            <b>Assalomu alekum. <br /> Siz bizning saytimizda topishingiz mumkin:</b><br />
-          <span
-            style={{
-              position: 'absolute',
-              filter: `blur(${blurValue(1 - fraction)}px)`,
-              opacity: `${opacityValue(1 - fraction)}%`,
-            }}
-          >
-            {phrases[currentPhrase]}
+          <div className="text-container">
+        <h1 className="main-title"> 
+          <span className="effect-text">
+              <b>Assalomu alekum. <br /> Siz bizning saytimizda topishingiz mumkin:</b><br />
+            <span
+              style={{
+                position: 'absolute',
+                filter: `blur(${blurValue(1 - fraction)}px)`,
+                opacity: `${opacityValue(1 - fraction)}%`,
+              }}
+            >
+              {phrases[currentPhrase]}
+            </span>
+            <span
+              style={{
+                position: 'absolute',
+                filter: `blur(${blurValue(fraction)}px)`,
+                opacity: `${opacityValue(fraction)}%`,
+              }}
+            >
+              {phrases[(currentPhrase + 1) % phrases.length]}
+            </span>
           </span>
-          <span
-            style={{
-              position: 'absolute',
-              filter: `blur(${blurValue(fraction)}px)`,
-              opacity: `${opacityValue(fraction)}%`,
-            }}
-          >
-            {phrases[(currentPhrase + 1) % phrases.length]}
-          </span>
-        </span>
-      </h1>
-    </div>
-        <div className="image-box">
+        </h1>
+          </div>
+          <div className="image-box">
             <img id='tilt' className="hero-img" src="/images/logo.png" alt="Alt" ref={tiltRef}/>
-        </div>
+          </div>
       </div>
       </div>
     </section>
