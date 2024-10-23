@@ -18,8 +18,8 @@ const Home = () => {
       </section>
       <section>
         <div className="container">
-          <img src="/images/AD" alt="sponor" />
-          <img src="/images/AD1" alt="sponor" />
+          <img src="/images/AD.jpg" alt="sponor" />
+          <img src="/images/AD1.webp" alt="sponor" />
         </div>
       </section>
     {/* <Phones /> */}
