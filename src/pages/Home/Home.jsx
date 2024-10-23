@@ -10,14 +10,18 @@ const Home = () => {
 
   return (
     <main>
-    <div>
       <Hero />
       <section>
         <div className="container">
           <PhotoGallery />
         </div>
       </section>
-    </div>
+      <section>
+        <div className="container">
+          <img src="/images/AD" alt="sponor" />
+          <img src="/images/AD1" alt="sponor" />
+        </div>
+      </section>
     {/* <Phones /> */}
     </main>
   );

@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    opacity: 0;
+    opacity: .3;
     transform: translateY(100px); /* Start off-screen below */
     transition: transform 0.8s ease, opacity 0.8s ease;
     img{
