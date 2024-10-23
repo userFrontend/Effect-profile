@@ -18,11 +18,11 @@ const Home = () => {
       </section>
       <section>
         <div className="container">
-          <img src="/images/AD.jpg" alt="sponor" />
-          <img src="/images/AD1.webp" alt="sponor" />
+          <img style={{objectFit: 'contain', height: "400px", margin: '20px 100px'}} src="/images/AD.jpg" alt="sponor" />
+          <img style={{objectFit: 'contain', height: "400px", margin: '20px 100px'}} src="/images/AD1.webp" alt="sponor" />
         </div>
       </section>
-    {/* <Phones /> */}
+    <Phones />
     </main>
   );
 }
