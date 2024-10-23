@@ -18,7 +18,7 @@ const Home = () => {
         </div>
       </section>
     </div>
-    <Phones />
+    {/* <Phones /> */}
     </main>
   );
 }
