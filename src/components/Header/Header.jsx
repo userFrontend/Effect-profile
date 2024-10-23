@@ -19,14 +19,18 @@ const Header = () => {
                         </Link>
                     <h2>EFFECT</h2>
                 </div>
-                <ul className="list">
+                <label className="switch">
+                  <input checked={theme === 'dark'} type="checkbox"  className="input__check" onChange={toggleTheme}/>
+                  <span className="slider"></span>
+                </label>
+                {/* <ul className="list">
                     <li to='/' className="items">
                     <input checked={theme === 'dark'} id="checkbox" type="checkbox" onChange={toggleTheme}/>
                     <label className="switch" htmlFor="checkbox">
                       {theme === 'dark' ? <LuSun /> : <BsMoonStars />}
                     </label>
                     </li>
-                </ul>
+                </ul> */}
             </nav> 
         </div>
       </header>
