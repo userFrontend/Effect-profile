@@ -1,68 +1,45 @@
-.photo-gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 50px 0;
-}
 
-.gallery-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 40px 0;
-  width: 80%;
-  opacity: 0;
-  transform: translateY(100px);
-  transition: transform 1s ease, opacity 1s ease;
-}
-
-.gallery__left {
-  flex-direction: row-reverse; /* Text chap tomonda, rasm o'ngda */
-  transform: translateX(-150px); /* Chap tomondan kirib keladi */
-}
-
-.gallery__right {
-  flex-direction: row; /* Rasm chapda, text o'ngda */
-  transform: translateX(150px); /* O'ng tomondan kirib keladi */
-}
-
-.gallery-item img {
-  max-width: 40%;
-  height: auto;
-}
-
-.gallery-item p {
-  max-width: 55%;
-  padding: 20px;
-  background-color: #f4f4f4;
-}
-
-.gallery-item.in-view {
-  opacity: 1;
-  transform: translateX(0) translateY(0); /* Skroll bo'lganda o'rtaga kiradi */
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-}
-
-/* Scrollga mos animatsiya */
-@keyframes moveIn {
-  0% {
-    transform: translateX(100%);
+.gallery {
+	display: flex;
+	flex-wrap: wrap; /* Allow multiple items per row */
+	justify-content: space-between;
+	padding: calc(var(--index) * 3) 0;
+  .gallery__item {
+    flex: 0 1 50%; /* Each item takes 50% width minus gap */
+    margin-bottom: var(--gallery-gap);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     opacity: 0;
+    transform: translateY(100px); /* Start off-screen below */
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    img{
+      height: 400px;
+      border-radius: 20px;
+    }
   }
-  100% {
-    transform: translateX(0);
+  
+  .gallery__item.fade-up-right {
+    transform: translateY(100px) translateX(100px); /* Start off-screen from right and down */
+  }
+  .gallery__item.fade-up-left {
+    transform: translateY(100px) translateX(-100px); /* Start off-screen from left and down */
+  }
+  .text-block {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* When elements come into view */
+  .visible.fade-up-right {
     opacity: 1;
+    transform: translateY(0) translateX(0); /* Move to original position from right */
   }
-}
-
-@keyframes moveInLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
+  .visible.fade-up-left {
     opacity: 1;
+    transform: translateY(0) translateX(0); /* Move to original position from left */
   }
 }
