@@ -47,7 +47,6 @@
             position: relative;
             left: 270px;
             width: 600px;
-            height: 880px;
             transform: translateX(-270px);
         }
 
@@ -65,18 +64,13 @@
             top: 8px;
             transform: translateX(130px);
         }
-
-        .phone3 {
-            transform: translateX(100%);
-            opacity: 0;
-          }
           
           .phone1.animate {
-            animation: slideFromLeft 0.5s forwards;
-          }
+            animation: slideFromLeft 0.8s forwards;
+        }
           
           .phone3.animate {
-            animation: slideFromRight 0.5s forwards;
-          }
+            animation: slideFromRight 0.8s forwards;
+        }
     }
 }
