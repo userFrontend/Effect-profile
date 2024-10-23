@@ -1,24 +1,11 @@
-@keyframes slideFromLeft {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50%)
   }
-  
-  @keyframes slideFromRight {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
+  to {
+    transform: translateX(50%);
   }
+}
 
 .main-phone {
     width: 100%;
@@ -37,21 +24,16 @@
         display: flex;
         align-items: center;
         height: auto;
-
-        .phone {
-            transition: all 1s ease-in-out;
-        }
-
         .phone1 {
+          width: 400px;
             z-index: 1;
             position: relative;
             left: 270px;
             width: 600px;
-            height: 880px;
-            transform: translateX(-270px);
         }
 
         .phone2 {
+          height: 650px;
             z-index: 2;
             position: relative;
             top: 5px;
@@ -59,24 +41,75 @@
         }
 
         .phone3 {
-            z-index: 3;
+          height: 650px;
+            z-index: 2;
             position: relative;
             right: 130px;
             top: 8px;
-            transform: translateX(130px);
         }
-
-        .phone3 {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          
-          .phone1.animate {
-            animation: slideFromLeft 0.5s forwards;
-          }
-          
-          .phone3.animate {
-            animation: slideFromRight 0.5s forwards;
-          }
     }
+}
+
+.main-phone {
+  width: 100%;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  article {
+    width: 180px;
+    height: auto;
+}
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    overflow: hidden;
+
+    img {
+      transition: transform 0.5s ease-in-out , opacity 0.5s ease-in-out;
+
+      &.animate {
+        .phone1 {
+          transform: translateX(0);
+          opacity: 1;
+          animation: slideInLeft 1s forwards;
+        }
+  
+        .phone2 {
+          transform: translateX(0);
+          opacity: 1;
+        }
+  
+        .phone3 {
+          transform: translateX(0);
+          opacity: 1;
+          animation: slideInRight 1s forwards;
+        }
+      }
+
+      &.phone1 {
+        width: 450px;
+        height: 660px;
+      }
+
+      &.phone3 {
+        width: 350px;
+        height: 655px;
+        position: relative;
+        top: -0.3px;
+      }
+
+      &.phone2 {
+        width: 350px;
+        height: 640px;
+        position: relative;
+        left: 30px;
+        top: -8px;
+      }
+    }
+  }
 }
