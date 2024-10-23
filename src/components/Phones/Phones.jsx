@@ -1,54 +1,33 @@
-import React, { useEffect, useRef } from 'react'
-import "./Phones.scss"
+import React, { useEffect, useRef, useState } from 'react';
+import "./Phones.scss";
 
 const Phones = () => {
-  const phone1Ref = useRef(null);
-  const phone3Ref = useRef(null);
+  const [inView , setInView] =useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    let scrollTimeout;
-
-    const handleScroll = () => {
-      const phone1 = phone1Ref.current;
-      const phone3 = phone3Ref.current;
-
-      if (phone1 && phone3) {
-        const phone1Position = phone1.getBoundingClientRect().top;
-        const phone3Position = phone3.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-
-        if (phone1Position < screenPosition) {
-          phone1.classList.add('animate');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if(entry.isIntersecting) {
+          setInView(true)
         } else {
-          phone1.classList.remove('animate');
+          setInView(false)
         }
+      },
+      {threshold:0.2}
+    )
 
-        if (phone3Position < screenPosition) {
-          phone3.classList.add('animate');
-        } else {
-          phone3.classList.remove('animate');
-        }
-      }
-
-      // Clear previous timeout
-      clearTimeout(scrollTimeout);
-
-      // Set new timeout
-      scrollTimeout = setTimeout(() => {
-        if (phone1 && phone3) {
-          phone1.classList.remove('animate');
-          phone3.classList.remove('animate');
-        }
-      }, 100); // Adjust this value to control how long the animation lasts after scrolling stops
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    if(sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
-    };
+      if(sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
   }, []);
+
 
   return (
     <div className='main-phone'>
@@ -58,14 +37,13 @@ const Phones = () => {
         </h1>
       </article>
 
-      <section>
-        <img ref={phone1Ref} className='phone phone1' src="/images/phone-kasting.png" alt="" />
-        <img className='phone phone2' src="/images/phone-mehnat.png" alt="" />
-        <img ref={phone3Ref} className='phone phone3' src="/images/phone-zamonaviy.png" alt="" />
+      <section ref={sectionRef} className={inView ? "animate" : ""}>
+          <img className='phone1' src="/images/phone-kasting.png" alt="" />
+          <img className='phone2' src="/images/phone-mehnat.png" alt="" />
+          <img className='phone3' src="/images/phone-zamonaviy.png" alt="" />
       </section>
     </div>
-  )
+  );
 }
 
-
-export default Phones
+export default Phones;
