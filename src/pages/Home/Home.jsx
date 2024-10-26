@@ -10,14 +10,18 @@ const Home = () => {
 
   return (
     <main>
-    <div>
       <Hero />
       <section>
         <div className="container">
           <PhotoGallery />
         </div>
       </section>
-    </div>
+      <section>
+        <div className="container">
+          <img style={{objectFit: 'contain', height: "400px", margin: '20px 100px'}} src="/images/AD.jpg" alt="sponor" />
+          <img style={{objectFit: 'contain', height: "400px", margin: '20px 100px'}} src="/images/AD1.webp" alt="sponor" />
+        </div>
+      </section>
     <Phones />
     </main>
   );
