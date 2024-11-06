@@ -1,20 +1,24 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Hero.scss'; // Make sure to import your styles
+import { useInfoContext } from '../../context/infoContext';
 
-const phrases = [
-    "Ish",
-    "Rezyumi",
-    "Sherik",
-    "Ustoz",
-    "Shogirt"  ,
-  ];
 
 const Hero = () => {
+  const {language} = useInfoContext()
+  
+  const phrases = [
+      language.hero.content.work,
+      language.hero.content.resume,
+      language.hero.content.teacher,
+      language.hero.content.student,
+      language.hero.content.partner
+    ];
+
     const [currentPhrase, setCurrentPhrase] = useState(0);
     const [morph, setMorph] = useState(0);
     const [cooldown, setCooldown] = useState(true);
   
-    const morphTime = 40; // Time for morphing
+    const morphTime = 25; // Time for morphing
     const cooldownTime = 400; // Time the text stays visible after morphing
   
     useEffect(() => {
@@ -104,11 +108,10 @@ const Hero = () => {
         <div className="hero">
           <div className="text-container">
         <h1 className="main-title"> 
+          <b>{language.hero.say} <br /> {language.hero.title}</b><br />
           <span className="effect-text">
-              <b>Assalomu alekum. <br /> Siz bizning saytimizda topishingiz mumkin:</b><br />
             <span
               style={{
-                position: 'absolute',
                 filter: `blur(${blurValue(1 - fraction)}px)`,
                 opacity: `${opacityValue(1 - fraction)}%`,
               }}
@@ -117,7 +120,6 @@ const Hero = () => {
             </span>
             <span
               style={{
-                position: 'absolute',
                 filter: `blur(${blurValue(fraction)}px)`,
                 opacity: `${opacityValue(fraction)}%`,
               }}

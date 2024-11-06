@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import './PhotoGallery.scss';
+import { Link } from 'react-router-dom';
+import { useInfoContext } from '../../context/infoContext';
 
 const PhotoGallery = () => {
+  const {language} = useInfoContext()
   const galleryItemsRef = useRef([]);
 
   useEffect(() => {
@@ -23,30 +26,62 @@ const PhotoGallery = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // const images = [
-  //   { src: '/images/ART1.png', text: 'First Image', side: 'right' },
-  //   { src: '/images/ART2.png', text: 'Second Image', side: 'left' },
-  //   { src: '/images/ART3.png', text: 'Third Image', side: 'right' },
-  //   { src: '/images/ART4.png', text: 'Fourth Image', side: 'left' },
-  // ];
+ // Function to determine if screen is mobile
+ const isMobile = () => window.innerWidth < 992;
 
-  const images = [
-    { src: '/images/ART 1.png', side: 'left'},
-    { text: `"EFFECT | Katta mehnat bozori" kanaliga xush kelibsiz! Ushbu kanal turli sohalar bo'yicha ish o'rinlarini yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'right' },
-    { text: `"EFFECT | Zamonaviy vakansiyalar" kanaliga xush kelibsiz! Ushbu kanal zamonaviy kasblar bo'yicha vakansiyalarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'left' },
-    { src: '/images/ART 2.png', side: 'right'},
-    { src: '/images/ART 3.png', side: 'left'},
-    { text: `"EFFECT | Ustalar bozori" kanaliga xush kelibsiz! Ushbu kanal ustachilik yo'nalishi bo'yicha turli hil ishlarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'right' },
-    { text: `"EFFECT | Ofis vakansiyalari" kanaliga xush kelibsiz! Ushbu kanal ofislarda uchraydigan kasblar bo'yicha vakansiyalarni yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'left' },
-    { src: '/images/ART 4.png', side: 'right'},
-    { src: '/images/ART 5.png', side: 'left'},
-    { text: `"EFFECT | Mardikorlar bozori" kanaliga xush kelibsiz! Ushbu kanal mardikorlik yo'nalishi bo'yicha turli hil ish o'rinlarini yoki ishchilarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'right' },
-    { text: `"EFFECT | Kasting" kanaliga xush kelibsiz! Ushbu kanal san'at sohasi bo'yicha loyihalarni yoki mutaxassislarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'left' },
-    { src: '/images/ART 6.png', side: 'right'},
-    { src: '/images/ART 7.png', side: 'left'},
-    { text: `"EFFECT | San'at sohalari ishlari" kanaliga xush kelibsiz! Ushbu kanal san'at sohasi bo'yicha ishlarni yoki mutaxassislarni, ustozlarni yoki shogirtlarni, qolaversa sheriklarni ham topishga yordam beradi.`, side: 'right' },
-    { text: `"EFFECT" - bu internet-rekrutment va har tomonlama professional aloqalarni o'rnatish uchun zamonaviy onlayn xizmatlarni taqdim etishga ixtisoslashgan kompaniya.`, side: 'right' },
-  ];
+ // Create the images array based on screen size
+ const images = isMobile() 
+   ? [
+       { src: '/images/ART 1.png', side: 'left', color: "#eac843", link: 'https://t.me/effect_mehnat'},
+       { text: language.gallery.mehnat, side: 'right', link: 'https://t.me/effect_mehnat'},
+       { src: '/images/ART 2.png', side: 'left', color: "#1d5c9f", link: 'https://t.me/effect_mehnat_zamonaviykasb'},
+       { text: language.gallery.zamonaviy, side: 'right', link: 'https://t.me/effect_mehnat_zamonaviykasb'},
+       { src: '/images/ART 3.png', side: 'left', color: "#F7833A", link: 'https://t.me/effect_mehnat_ustalar'},
+       { text: language.gallery.ustalar, side: 'right', link: 'https://t.me/effect_mehnat_ustalar'},
+       { src: '/images/ART 4.png', side: 'left', color: "#cab1b4", link: 'https://t.me/effect_mehnat_ofis'},
+       { text: language.gallery.ofis, side: 'right', link: 'https://t.me/effect_mehnat_ofis'},
+       { src: '/images/ART 5.png', side: 'left', color: "#959e69", link: 'https://t.me/effect_mehnat_mardikorlar'},
+       { text: language.gallery.mardikor, side: 'right', link: 'https://t.me/effect_mehnat_mardikorlar'},
+       { src: '/images/ART 6.png', side: 'left', color: "#ef2b2b", link: 'https://t.me/effect_mehnat_kasting'},
+       { text: language.gallery.kasting, side: 'right', link: 'https://t.me/effect_mehnat_kasting'},
+       { src: '/images/ART 7.png', side: 'left', color: "#9009ad", link: 'https://t.me/effect_mehnat_sanat'},
+       { text: language.gallery.sanat, side: 'right', link: 'https://t.me/effect_mehnat_sanat'},
+     ] 
+   : [
+    { src: '/images/ART 1.png', side: 'left', color: "#eac843", link: 'https://t.me/effect_mehnat'},
+    { text: language.gallery.mehnat, side: 'right', link: 'https://t.me/effect_mehnat'},
+    { text: language.gallery.zamonaviy, side: 'left', link: 'https://t.me/effect_mehnat_zamonaviykasb'},
+    { src: '/images/ART 2.png', side: 'right', color: "#1d5c9f", link: 'https://t.me/effect_mehnat_zamonaviykasb'},
+    { src: '/images/ART 3.png', side: 'left', color: "#F7833A", link: 'https://t.me/effect_mehnat_ustalar'},
+    { text: language.gallery.ustalar, side: 'right', link: 'https://t.me/effect_mehnat_ustalar'},
+    { text: language.gallery.ofis, side: 'left', link: 'https://t.me/effect_mehnat_ofis'},
+    { src: '/images/ART 4.png', side: 'right', color: "#cab1b4", link: 'https://t.me/effect_mehnat_ofis'},
+    { src: '/images/ART 5.png', side: 'left', color: "#959e69", link: 'https://t.me/effect_mehnat_mardikorlar'},
+    { text: language.gallery.mardikor, side: 'right', link: 'https://t.me/effect_mehnat_mardikorlar'},
+    { text: language.gallery.kasting, side: 'left', link: 'https://t.me/effect_mehnat_kasting'},
+    { src: '/images/ART 6.png', side: 'right', color: "#ef2b2b", link: 'https://t.me/effect_mehnat_kasting'},
+    { src: '/images/ART 7.png', side: 'left', color: "#9009ad", link: 'https://t.me/effect_mehnat_sanat'},
+    { text: language.gallery.sanat, side: 'right', link: 'https://t.me/effect_mehnat_sanat'},
+     ];
+
+ useEffect(() => {
+   const handleScroll = () => {
+     galleryItemsRef.current.forEach(item => {
+       const rect = item.getBoundingClientRect();
+       const screenPosition = window.innerHeight / 1.3;
+
+       // Trigger the animation when the item enters the view
+       if (rect.top < screenPosition) {
+         item.classList.add('visible');
+       } else {
+         item.classList.remove('visible'); // Remove the class when it scrolls out of view
+       }
+     });
+   };
+
+   window.addEventListener('scroll', handleScroll);
+   return () => window.removeEventListener('scroll', handleScroll);
+ }, []);
 
   return (
     <div className="gallery">
@@ -56,8 +91,10 @@ const PhotoGallery = () => {
           key={index}
           ref={el => galleryItemsRef.current[index] = el} // Store ref for each item
         >
-          {item.src && <img id='tilt' src={item.src} alt={`Image ${index + 1}`} />}
-          {item.text && <div className="text-block">{item.text}</div>}
+          {item.src && <Link to={item.link ? item.link : ''}><img style={{backgroundColor: item.color}} id='tilt' src={item.src} alt={`Image ${index + 1}`} /></Link>}
+          {item.text && <div className="text-block">{item.text} <br />
+          {item.link && <Link to={item.link}><button className='gallery-btn'>{language.link}</button></Link>}
+          </div>}
         </div>
       ))}
     </div>

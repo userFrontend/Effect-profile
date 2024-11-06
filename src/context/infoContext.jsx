@@ -1,6 +1,6 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
-// import { changeLang } from "../language"
+import { changeLang } from "../language";
 
 
 const InfoContext = createContext()
@@ -9,7 +9,7 @@ export const useInfoContext = () => useContext(InfoContext)
 
 export const InfoProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("profile")) || null)
-    // const [language, setLanguage] = useState(changeLang(localStorage.getItem("language")) || changeLang('ru'))
+    const [language, setLanguage] = useState(changeLang(localStorage.getItem("language")) || changeLang('uz'))
     const [theme, setTheme] = useState(localStorage.getItem("mode") || 'light');
 
     useEffect(() => {
@@ -25,11 +25,11 @@ export const InfoProvider = ({children}) => {
         }
     };
 
-    // const handleLanguageChange = (lang) => {
-    //   const newTranslations = changeLang(lang);
-    //   setLanguage(newTranslations);
-    //   localStorage.setItem('language', lang)
-    // };
+    const handleLanguageChange = (lang) => {
+      const newTranslations = changeLang(lang);
+      setLanguage(newTranslations);
+      localStorage.setItem('language', lang)
+    };
 
     const exit = () => {
         localStorage.clear()
@@ -37,7 +37,7 @@ export const InfoProvider = ({children}) => {
     }
      const value = {
         currentUser, setCurrentUser, exit,
-        // language, setLanguage, handleLanguageChange, 
+        language, setLanguage, handleLanguageChange, 
         theme, setTheme, toggleTheme
     }
 
